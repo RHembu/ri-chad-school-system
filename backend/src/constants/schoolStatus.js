@@ -1,0 +1,8 @@
+const SCHOOL_STATUS = {
+  DEMO: "DEMO",
+  ACTIVE: "ACTIVE",
+  EXPIRED: "EXPIRED",
+  SUSPENDED: "SUSPENDED",
+};
+
+module.exports = SCHOOL_STATUS;
