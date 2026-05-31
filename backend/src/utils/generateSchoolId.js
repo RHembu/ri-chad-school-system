@@ -1,15 +1,10 @@
-function generateSchoolId(existingSchools = []) {
+function generateSchoolId() {
   const year = new Date().getFullYear();
 
-  const currentYearSchools = existingSchools.filter((school) =>
-    school.schoolId?.startsWith(`RCS-${year}`)
-  );
+  const uniquePart =
+    Date.now().toString().slice(-6);
 
-  const nextNumber = currentYearSchools.length + 1;
-
-  const sequence = String(nextNumber).padStart(4, "0");
-
-  return `RCS-${year}-${sequence}`;
+  return `RCS-${year}-${uniquePart}`;
 }
 
 module.exports = generateSchoolId;
