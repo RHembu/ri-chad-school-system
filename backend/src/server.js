@@ -2,15 +2,26 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-const schoolRoutes = require("./routes/schoolRoutes");
-const testRoleRoutes = require("./routes/testRoleRoutes");
-const testTenantRoutes = require("./routes/testTenantRoutes");
+const schoolRoutes =
+  require("./routes/schoolRoutes");
+
+const testRoleRoutes =
+  require("./routes/testRoleRoutes");
+
+const testTenantRoutes =
+  require("./routes/testTenantRoutes");
+
 const authRoutes =
   require("./routes/authRoutes");
+
 const testDemoRoutes =
   require("./routes/testDemoRoutes");
+
 const academicYearRoutes =
   require("./routes/academicYearRoutes");
+
+const academicPeriodRoutes =
+  require("./routes/academicPeriodRoutes");
 
 dotenv.config();
 
@@ -22,40 +33,87 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Ri-Chad Backend Running"
+    message:
+      "Ri-Chad Backend Running",
   });
 });
 
-app.get("/api/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Backend API Healthy"
-  });
-});
+app.get(
+  "/api/health",
+  (req, res) => {
+    res.json({
+      success: true,
+      message:
+        "Backend API Healthy",
+    });
+  }
+);
 
 /*
 |--------------------------------------------------------------------------
-| Test Tenant Route
+| Test Routes
 |--------------------------------------------------------------------------
-| Used for Phase 3 Multi-Tenant Middleware testing
 */
-app.use("/api/test-tenant", testTenantRoutes);
-app.use("/api/test-role", testRoleRoutes);
-app.use("/api/schools", schoolRoutes);
-app.use("/api/auth", authRoutes);
+app.use(
+  "/api/test-tenant",
+  testTenantRoutes
+);
+
+app.use(
+  "/api/test-role",
+  testRoleRoutes
+);
+
 app.use(
   "/api/test-demo",
   testDemoRoutes
 );
 
+/*
+|--------------------------------------------------------------------------
+| Authentication
+|--------------------------------------------------------------------------
+*/
+app.use(
+  "/api/auth",
+  authRoutes
+);
+
+/*
+|--------------------------------------------------------------------------
+| Schools
+|--------------------------------------------------------------------------
+*/
+app.use(
+  "/api/schools",
+  schoolRoutes
+);
+
+/*
+|--------------------------------------------------------------------------
+| Academic Years
+|--------------------------------------------------------------------------
+*/
 app.use(
   "/api/academic-years",
   academicYearRoutes
 );
 
-const PORT = process.env.PORT || 5000;
+/*
+|--------------------------------------------------------------------------
+| Academic Periods
+|--------------------------------------------------------------------------
+*/
+app.use(
+  "/api/academic-periods",
+  academicPeriodRoutes
+);
 
+const PORT =
+  process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(
+    `Server running on port ${PORT}`
+  );
 });
