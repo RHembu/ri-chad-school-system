@@ -7,6 +7,11 @@ async function createAcademicPeriod(
   req,
   res
 ) {
+
+console.log(
+  "ACADEMIC PERIOD CONTROLLER HIT"
+);
+
   try {
     const academicPeriod =
       await createAcademicPeriodService({

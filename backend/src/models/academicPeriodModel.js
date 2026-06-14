@@ -5,9 +5,21 @@ async function createAcademicPeriod({
   schoolId,
   periodName,
   periodType,
+  periodOrder,
   startDate,
   endDate,
 }) {
+
+console.log("academicPeriodModel received:", {
+  academicYearId,
+  schoolId,
+  periodName,
+  periodType,
+  periodOrder,
+  startDate,
+  endDate,
+});
+
   const result = await pool.query(
     `
     INSERT INTO academic_periods (
@@ -15,10 +27,12 @@ async function createAcademicPeriod({
       school_id,
       period_name,
       period_type,
+      period_order,
       start_date,
-      end_date
+      end_date,
+      status
     )
-    VALUES ($1,$2,$3,$4,$5,$6)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,'ACTIVE')
     RETURNING *
     `,
     [
@@ -26,6 +40,7 @@ async function createAcademicPeriod({
       schoolId,
       periodName,
       periodType,
+      periodOrder,
       startDate,
       endDate,
     ]
@@ -44,7 +59,7 @@ async function getAcademicPeriodsByYear(
     FROM academic_periods
     WHERE academic_year_id = $1
     AND school_id = $2
-    ORDER BY id ASC
+    ORDER BY period_order ASC
     `,
     [
       academicYearId,
@@ -67,8 +82,9 @@ async function getAcademicPeriodsBySchool(
     JOIN academic_years ay
       ON ay.id = ap.academic_year_id
     WHERE ap.school_id = $1
-    ORDER BY ay.year_name DESC,
-             ap.id ASC
+    ORDER BY
+      ay.year_name DESC,
+      ap.period_order ASC
     `,
     [schoolId]
   );
