@@ -34,40 +34,10 @@ async function createAcademicYearService(
   const isActive =
     existingYears.length === 0;
 
-  if (isActive) {
-    await deactivateAcademicYears(
-      schoolDbId
-    );
-  }
-
   return createAcademicYear({
     ...data,
     schoolId: schoolDbId,
     isActive,
-  });
-} {
-  const school =
-    await findSchoolBySchoolId(
-      data.schoolId
-    );
-
-  if (!school) {
-    throw new Error(
-      "School not found"
-    );
-  }
-
-  const schoolDbId = school.id;
-
-  if (data.isActive) {
-    await deactivateAcademicYears(
-      schoolDbId
-    );
-  }
-
-  return createAcademicYear({
-    ...data,
-    schoolId: schoolDbId,
   });
 }
 
