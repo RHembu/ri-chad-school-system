@@ -8,11 +8,10 @@ function authorize(...allowedRoles) {
         });
       }
 
-      const userRoles = req.user.roles || [];
+      const userRole = req.user.role;
 
-      const hasPermission = userRoles.some(role =>
-        allowedRoles.includes(role)
-      );
+      const hasPermission =
+        allowedRoles.includes(userRole);
 
       if (!hasPermission) {
         return res.status(403).json({

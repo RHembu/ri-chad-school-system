@@ -22,10 +22,10 @@ router.post(
 
 router.put(
   "/profile",
-  authenticate,
-  authorize(
-    "SUPER_ADMIN",
-    "SCHOOL_ADMIN"
+    authenticate,
+    authorize(
+    "super_admin",
+    "school_admin"
   ),
   updateSchoolProfileController
 );
