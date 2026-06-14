@@ -9,6 +9,8 @@ const authRoutes =
   require("./routes/authRoutes");
 const testDemoRoutes =
   require("./routes/testDemoRoutes");
+const academicYearRoutes =
+  require("./routes/academicYearRoutes");
 
 dotenv.config();
 
@@ -44,6 +46,11 @@ app.use("/api/auth", authRoutes);
 app.use(
   "/api/test-demo",
   testDemoRoutes
+);
+
+app.use(
+  "/api/academic-years",
+  academicYearRoutes
 );
 
 const PORT = process.env.PORT || 5000;
