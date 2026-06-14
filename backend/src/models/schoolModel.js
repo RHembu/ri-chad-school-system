@@ -48,7 +48,44 @@ async function findSchoolBySchoolId(schoolId) {
   return result.rows[0];
 }
 
+async function updateSchoolProfile(
+  schoolId,
+  data
+) {
+  const result = await pool.query(
+    `
+    UPDATE schools
+    SET
+      motto = $1,
+      academic_system = $2,
+      address = $3,
+      phone = $4,
+      website = $5,
+      principal_name = $6,
+      registration_number = $7,
+      registration_details = $8,
+      updated_at = CURRENT_TIMESTAMP
+    WHERE school_id = $9
+    RETURNING *
+    `,
+    [
+      data.motto,
+      data.academicSystem,
+      data.address,
+      data.phone,
+      data.website,
+      data.principalName,
+      data.registrationNumber,
+      data.registrationDetails,
+      schoolId,
+    ]
+  );
+
+  return result.rows[0];
+}
+
 module.exports = {
   createSchool,
   findSchoolBySchoolId,
+  updateSchoolProfile,
 };

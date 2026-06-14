@@ -13,10 +13,10 @@ async function login({
   password,
 }) {
   const user =
-    await findUserByUsernameAndSchoolId(
-      username,
-      schoolId
-    );
+  await findUserByUsernameAndSchoolId(
+    username,
+    schoolId
+  );
 
   if (!user) {
     throw new Error(
