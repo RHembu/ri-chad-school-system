@@ -9,6 +9,7 @@ import MainLayout from "./layouts/MainLayout";
 
 import DashboardPage from "./pages/DashboardPage";
 import AcademicYearsPage from "./pages/AcademicYearsPage";
+import AcademicPeriodsPage from "./pages/AcademicPeriodsPage";
 import SchoolSettingsPage from "./pages/SchoolSettingsPage";
 import LoginPage from "./pages/LoginPage";
 
@@ -58,6 +59,13 @@ function App() {
                   />
 
                   <Route
+                    path="/academic-periods"
+                    element={
+                      <AcademicPeriodsPage />
+                    }
+                  />
+
+                  <Route
                     path="*"
                     element={
                       <Navigate
@@ -75,6 +83,7 @@ function App() {
             )
           }
         />
+
       </Routes>
     </BrowserRouter>
   );

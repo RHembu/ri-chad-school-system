@@ -4,27 +4,20 @@ const {
   activateAcademicYearService,
 } = require("../services/academicYearService");
 
-async function createAcademicYear(
-  req,
-  res
-) {
+async function createAcademicYear(req, res) {
   try {
-    const academicYear =
-      await createAcademicYearService({
-        schoolId: req.user.schoolId,
-        yearName: req.body.yearName,
-        startDate:
-          req.body.startDate,
-        endDate:
-          req.body.endDate,
-        isActive:
-          req.body.isActive,
-        createdBy:
-          req.user.userId,
-      });
+    const academicYear = await createAcademicYearService({
+      schoolId: req.user.schoolId,
+      yearName: req.body.yearName,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      isActive: req.body.isActive,
+      createdBy: req.user.userId,
+    });
 
     return res.status(201).json({
       success: true,
+      message: "Academic year created successfully",
       data: academicYear,
     });
   } catch (error) {
@@ -35,15 +28,11 @@ async function createAcademicYear(
   }
 }
 
-async function getAcademicYears(
-  req,
-  res
-) {
+async function getAcademicYears(req, res) {
   try {
-    const academicYears =
-      await getAcademicYearsService(
-        req.user.schoolId
-      );
+    const academicYears = await getAcademicYearsService(
+      req.user.schoolId
+    );
 
     return res.json({
       success: true,
@@ -57,19 +46,16 @@ async function getAcademicYears(
   }
 }
 
-async function activateAcademicYear(
-  req,
-  res
-) {
+async function activateAcademicYear(req, res) {
   try {
-    const academicYear =
-      await activateAcademicYearService(
-        req.params.id,
-        req.user.schoolId
-      );
+    const academicYear = await activateAcademicYearService(
+      req.params.id,
+      req.user.schoolId
+    );
 
     return res.json({
       success: true,
+      message: "Academic year activated successfully",
       data: academicYear,
     });
   } catch (error) {
