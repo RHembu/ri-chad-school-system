@@ -1,44 +1,40 @@
-const express =
-  require("express");
-
-const router =
-  express.Router();
-
-const authMiddleware =
-  require("../middleware/authMiddleware");
+const express = require("express");
+const router = express.Router();
 
 const {
   createStream,
   getStreams,
   updateStream,
   deleteStream,
-} = require(
-  "../controllers/streamController"
+} = require("../controllers/streamController");
+
+const authMiddleware = require("../middleware/authMiddleware");
+const authorize = require("../middleware/roleMiddleware");
+
+router.use(authMiddleware);
+
+router.post(
+  "/",
+  authorize("SUPER_ADMIN", "SCHOOL_ADMIN"),
+  createStream
 );
 
 router.get(
   "/",
-  authMiddleware,
+  authorize("SUPER_ADMIN", "SCHOOL_ADMIN"),
   getStreams
-);
-
-router.post(
-  "/",
-  authMiddleware,
-  createStream
 );
 
 router.put(
   "/:id",
-  authMiddleware,
+  authorize("SUPER_ADMIN", "SCHOOL_ADMIN"),
   updateStream
 );
 
 router.delete(
   "/:id",
-  authMiddleware,
+  authorize("SUPER_ADMIN", "SCHOOL_ADMIN"),
   deleteStream
 );
 
-module.exports =
-  router;
+module.exports = router;
