@@ -1,9 +1,28 @@
-const db = require("../config/db");
+const db =
+  require("../config/db");
+
+const {
+  findSchoolBySchoolId,
+} = require("../models/schoolModel");
 
 async function createClass(
   schoolId,
   data
 ) {
+  const school =
+    await findSchoolBySchoolId(
+      schoolId
+    );
+
+  if (!school) {
+    throw new Error(
+      "School not found"
+    );
+  }
+
+  const schoolDbId =
+    school.id;
+
   const {
     class_name,
     class_level,
@@ -25,7 +44,7 @@ async function createClass(
       RETURNING *
       `,
       [
-        schoolId,
+        schoolDbId,
         class_name,
         class_level,
         class_type,
@@ -38,6 +57,20 @@ async function createClass(
 async function getClasses(
   schoolId
 ) {
+  const school =
+    await findSchoolBySchoolId(
+      schoolId
+    );
+
+  if (!school) {
+    throw new Error(
+      "School not found"
+    );
+  }
+
+  const schoolDbId =
+    school.id;
+
   const result =
     await db.query(
       `
@@ -46,7 +79,7 @@ async function getClasses(
       WHERE school_id = $1
       ORDER BY class_level
       `,
-      [schoolId]
+      [schoolDbId]
     );
 
   return result.rows;
@@ -57,6 +90,20 @@ async function updateClass(
   classId,
   data
 ) {
+  const school =
+    await findSchoolBySchoolId(
+      schoolId
+    );
+
+  if (!school) {
+    throw new Error(
+      "School not found"
+    );
+  }
+
+  const schoolDbId =
+    school.id;
+
   const {
     class_name,
     class_level,
@@ -83,7 +130,7 @@ async function updateClass(
         class_level,
         class_type,
         classId,
-        schoolId,
+        schoolDbId,
       ]
     );
 
@@ -94,6 +141,20 @@ async function deleteClass(
   schoolId,
   classId
 ) {
+  const school =
+    await findSchoolBySchoolId(
+      schoolId
+    );
+
+  if (!school) {
+    throw new Error(
+      "School not found"
+    );
+  }
+
+  const schoolDbId =
+    school.id;
+
   await db.query(
     `
     DELETE FROM classes
@@ -102,7 +163,7 @@ async function deleteClass(
     `,
     [
       classId,
-      schoolId,
+      schoolDbId,
     ]
   );
 }
