@@ -23,6 +23,12 @@ const academicYearRoutes =
 const academicPeriodRoutes =
   require("./routes/academicPeriodRoutes");
 
+const classRoutes =
+  require("./routes/classRoutes");
+
+const streamRoutes =
+  require("./routes/streamRoutes");
+
 dotenv.config();
 
 const app = express();
@@ -107,6 +113,26 @@ app.use(
 app.use(
   "/api/academic-periods",
   academicPeriodRoutes
+);
+
+/*
+|--------------------------------------------------------------------------
+| Classes
+|--------------------------------------------------------------------------
+*/
+app.use(
+  "/api/classes",
+  classRoutes
+);
+
+/*
+|--------------------------------------------------------------------------
+| Streams
+|--------------------------------------------------------------------------
+*/
+app.use(
+  "/api/streams",
+  streamRoutes
 );
 
 const PORT =
