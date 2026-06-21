@@ -84,7 +84,7 @@ function Sidebar() {
                 "bold",
             }}
           >
-            School Settings
+            Academic Structure
           </div>
 
           <div
@@ -132,6 +132,26 @@ function Sidebar() {
               }}
             >
               Academic Periods
+            </Link>
+
+            <Link
+              to="/classes"
+              style={{
+                color:"#fff",
+                textDecoration:"none",
+              }}
+            >
+              Classes
+            </Link>
+
+            <Link
+              to="/streams"
+              style={{
+                color:"#fff",
+              textDecoration:"none",
+              }}
+            >
+              Streams
             </Link>
 
             <Link

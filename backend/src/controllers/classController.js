@@ -23,11 +23,10 @@ async function createClass(
     console.error(error);
 
     res.status(500).json({
-      success: false,
-      message:
-        "Failed to create class",
+        success: false,
+        message: error.message,
     });
-  }
+    }
 }
 
 async function getClasses(
