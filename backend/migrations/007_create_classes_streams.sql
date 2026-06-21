@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS classes (
+  id SERIAL PRIMARY KEY,
+
+  school_id INTEGER NOT NULL REFERENCES schools(id) ON DELETE CASCADE,
+
+  class_name VARCHAR(50) NOT NULL,
+  class_level VARCHAR(50) NOT NULL,
+  class_type VARCHAR(30) NOT NULL,
+
+  display_order INTEGER DEFAULT 0,
+  status VARCHAR(20) DEFAULT 'ACTIVE',
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  UNIQUE (school_id, class_name)
+);
+
+CREATE TABLE IF NOT EXISTS streams (
+  id SERIAL PRIMARY KEY,
+
+  school_id INTEGER NOT NULL REFERENCES schools(id) ON DELETE CASCADE,
+  class_id INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+
+  stream_name VARCHAR(50) NOT NULL,
+  stream_code VARCHAR(20),
+
+  status VARCHAR(20) DEFAULT 'ACTIVE',
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  UNIQUE (school_id, class_id, stream_name)
+);
