@@ -135,10 +135,24 @@ function Sidebar() {
             </Link>
 
             <Link
+              to="/grade-levels"
+              style={{
+                color:
+                  "#fff",
+                textDecoration:
+                  "none",
+              }}
+            >
+              Grade Levels
+            </Link>
+
+            <Link
               to="/classes"
               style={{
-                color:"#fff",
-                textDecoration:"none",
+                color:
+                  "#fff",
+                textDecoration:
+                  "none",
               }}
             >
               Classes
@@ -147,8 +161,10 @@ function Sidebar() {
             <Link
               to="/streams"
               style={{
-                color:"#fff",
-              textDecoration:"none",
+                color:
+                  "#fff",
+                textDecoration:
+                  "none",
               }}
             >
               Streams

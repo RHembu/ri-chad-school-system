@@ -10,6 +10,7 @@ import MainLayout from "./layouts/MainLayout";
 import DashboardPage from "./pages/DashboardPage";
 import AcademicYearsPage from "./pages/AcademicYearsPage";
 import AcademicPeriodsPage from "./pages/AcademicPeriodsPage";
+import GradeLevelsPage from "./pages/GradeLevelsPage";
 import ClassesPage from "./pages/ClassesPage";
 import StreamsPage from "./pages/StreamsPage";
 
@@ -65,6 +66,13 @@ function App() {
                     path="/academic-periods"
                     element={
                       <AcademicPeriodsPage />
+                    }
+                  />
+
+                  <Route
+                    path="/grade-levels"
+                    element={
+                      <GradeLevelsPage />
                     }
                   />
 

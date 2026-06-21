@@ -23,6 +23,9 @@ const academicYearRoutes =
 const academicPeriodRoutes =
   require("./routes/academicPeriodRoutes");
 
+const gradeLevelRoutes =
+  require("./routes/gradeLevelRoutes");
+
 const classRoutes =
   require("./routes/classRoutes");
 
@@ -113,6 +116,16 @@ app.use(
 app.use(
   "/api/academic-periods",
   academicPeriodRoutes
+);
+
+/*
+|--------------------------------------------------------------------------
+| Grade Levels
+|--------------------------------------------------------------------------
+*/
+app.use(
+  "/api/grade-levels",
+  gradeLevelRoutes
 );
 
 /*
